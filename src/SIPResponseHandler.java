@@ -53,6 +53,10 @@ public class SIPResponseHandler {
 			{
 				sipModel.cSeq = Integer.parseInt(messageLines[i].split(" ")[1].trim());
 			}
+			else if(messageLines[i].startsWith("m=audio"))
+			{
+				sipModel.port = Integer.parseInt(messageLines[i].split(" ")[1].trim());
+			}
 	    }
 		
 		return sipModel;

@@ -17,14 +17,14 @@ public class Messenger
 	
 	public String okMessage(SIPModel model)
 	{
-        String sdp = String.format(SDP, 7079); // mediaport
+        String sdp = String.format(SDP, model.port+1); // mediaport
         return String.format(OK_FORMAT, model.via, model.from, model.to, model.callId, model.cSeq, sdp.length(), model.contact, sdp);
     }
 	
     private final String SDP = "v=0\r\n"
-            + "o=SIP_SPEAKER_SESSION 0 0 IN IP4 " + "127.0.0.1" + "\r\n"
+            + "o=SIP_SPEAKER_SESSION 0 0 IN IP4 " + SIPSpeaker.getLocalIP() + "\r\n"
             + "s=SIP SPEAKER V 1.0\r\n"
-            + "c=IN IP4 " + "127.0.0.1" + "\r\n"
+            + "c=IN IP4 " + SIPSpeaker.getLocalIP() + "\r\n"
             + "t=0 0\r\n"
             + "m=audio %d RTP/AVP 0\r\n"
             + "a=rtpmap:0 ULAW/8000\r\n"

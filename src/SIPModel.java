@@ -9,5 +9,7 @@ public class SIPModel
 	String callId;
 	String contact = "<sip:server@"+SIPSpeaker.getLocalIP()+":5070>";
 	int cSeq;
+	String IP;
+	int port;
 	
 }
