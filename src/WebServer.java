@@ -10,6 +10,7 @@ public class WebServer
 	
 	public void startWebServer(int port) throws UnsupportedEncodingException
 	{
+		
 		listen = true;
 		ServerSocket serverSocket = null;
 		try
