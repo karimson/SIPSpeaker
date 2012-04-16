@@ -1,14 +1,13 @@
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class WebServer
+public class SipServer 
 {
 	private static boolean listen;
 	
-	public void startWebServer(int port) throws UnsupportedEncodingException
+	public void startSipServer(int port)
 	{
 		listen = true;
 		ServerSocket serverSocket = null;
@@ -22,18 +21,18 @@ public class WebServer
 			System.exit(0);
 		}
                 
-		System.out.println("Web server started, waiting for incoming connections.");
+		System.out.println("Sip server started, waiting for incoming connections.");
                                
 		while(listen)
 		{
 			try 
-                        {
+            {
 				Socket clientSocket = serverSocket.accept();
-				ThreadHandler handler = new ThreadHandler(clientSocket);
+				CallHandler handler = new CallHandler(clientSocket);
 				handler.start();
 			} 
-                        catch (IOException e) 
-                        {
+            catch (IOException e) 
+            {
 				e.printStackTrace();
 			} 
 		}
@@ -44,6 +43,5 @@ public class WebServer
 	{
 		listen = false;
 	}
-
-
+	
 }

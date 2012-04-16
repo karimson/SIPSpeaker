@@ -5,27 +5,27 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 
-public class ThreadHandler extends Thread
+public class CallHandler extends Thread
 {
 	private Socket socket = null;
 
-public ThreadHandler(Socket inputSocket)
+public CallHandler(Socket inputSocket)
 {
 	this.socket = inputSocket;
 }
 
 public void run()
 {
-	RequestResponseHandler rrh = new RequestResponseHandler();
+	SIPResponseHandler srh = new SIPResponseHandler();
+	
 	PrintWriter out = null;
 	BufferedReader in = null;
-	HTTPModel httpModel;
+	SIPModel sipModel;
 
 	try 
 	{
 		out = new PrintWriter(socket.getOutputStream());
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		httpModel = new HTTPModel();
 		
 		char[] inBuff = new char[10000];
 		int charsRead = 0;
@@ -48,7 +48,7 @@ public void run()
 				{
 					continue;
 				}
-				rrh.processRequest(processedLine, httpModel);
+				srh.processRequest(processedLine, sipModel);
 			}
 			                   
 			if (httpModel.type.equals("GET") || httpModel.type.equals("POST"))
