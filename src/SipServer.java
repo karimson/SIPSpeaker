@@ -1,47 +1,43 @@
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 
 
-public class SipServer 
+public class SipServer
 {
-	private static boolean listen;
 	
-	public void startSipServer(int port)
-	{
-		listen = true;
-		ServerSocket serverSocket = null;
-		try
-		{
-			serverSocket = new ServerSocket(port); 
+    public void startSipServer(int port) throws InterruptedException, SocketException, Exception
+    {
+
+    	DatagramSocket serverSocket = null;
+
+        try
+        {
+			serverSocket = new DatagramSocket(5070);
+		} 
+        catch (SocketException e1)
+        {
+			e1.printStackTrace();
 		}
-		catch(IOException e)
-		{
-			System.out.println("Error listening to port.");
-			System.exit(0);
-		}
-                
-		System.out.println("Sip server started, waiting for incoming connections.");
-                               
-		while(listen)
-		{
-			try 
+	        
+        while (true)
+        {
+            byte[] buf = new byte[1024];
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            try 
             {
-				Socket clientSocket = serverSocket.accept();
-				CallHandler handler = new CallHandler(clientSocket);
-				handler.start();
+            	System.out.println("Waiting for packet..");
+				serverSocket.receive(packet);
+				System.out.println("Packet recieved..");
 			} 
-            catch (IOException e) 
-            {
+            catch (IOException e)
+			{
 				e.printStackTrace();
-			} 
-		}
-		System.out.println("Server is now dead");
-	}
-	
-	public static void kill()
-	{
-		listen = false;
-	}
-	
+			}
+           
+            CallHandler ch = new CallHandler(serverSocket, packet);
+            ch.run();
+        }
+    }
 }

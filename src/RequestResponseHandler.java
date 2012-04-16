@@ -1,12 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 
 public class RequestResponseHandler
-{
+{	
 	public void processRequest(String request, HTTPModel httpModel)
 	{
 		if(request.startsWith("GET"))
@@ -53,31 +49,9 @@ public class RequestResponseHandler
 		}
 	}
 
-	public void processOutput(HTTPModel httpModel, PrintWriter out, String status) 
+	public void processOutput(HTTPModel httpModel, PrintWriter out) 
 	{
-            if(httpModel.type.equals("POST"))
-            {
-                if(httpModel.path.contains("status"))
-                {
-                    out.write(status);
-                }   
-                else
-                {
-                   out.write("Mail queued, check status page.");
-                }
-                
-            }
-            else
-            {
-                if(httpModel.path.contains("status"))
-                {
-                   out.write(status);
-                }
-                else
-                {
-                   out.write(getPage("webmail.html"));
-                }
-            }
+           
 	}
 	
         
@@ -125,5 +99,4 @@ public class RequestResponseHandler
         return response;
     }
 	
-
 }

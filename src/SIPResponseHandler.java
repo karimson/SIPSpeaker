@@ -1,32 +1,59 @@
 
-public class SIPResponseHandler {
 
-	public void processRequest(String request, SIPModel sipModel) 
+
+public class SIPResponseHandler {
+	Messenger messenger = new Messenger();
+	SIPModel sipModel = new SIPModel();
+	
+	public SIPModel processRequest(String request) 
 	{
-		if(request.startsWith("INVITE"))
+		System.out.println(request);
+		String[] messageLines = request.split("\n");
+		
+		for (int i=0; i<messageLines.length; i++)
 		{
-			sipModel.invite = request.split(" ")[1].trim();
-		}
-		else if(request.startsWith("Via:"))
-		{
-			sipModel.via = request.split(" ")[2].trim();
-		}
-		else if(request.startsWith("From:"))
-		{
-			sipModel.from = request.split(" ")[1].trim(); //sip:alice...
-		}
-		else if(request.startsWith("To:"))
-		{
-			sipModel.to = request.split(" ")[1].trim(); //<> kvar, samma som from
-		}
-		else if(request.startsWith("Call-ID:"))
-		{
-			sipModel.callId = request.split(" ")[1].trim();
-		}
-		else if(request.startsWith("CSeq:"))
-		{
-			sipModel.cSeq = Integer.parseInt(request.split(" ")[1].trim());
-		}
+			if(messageLines[i].startsWith("OPTIONS"))
+			{
+				sipModel.type = "OPTIONS";
+			}
+			if(messageLines[i].startsWith("INVITE"))
+			{
+				sipModel.type = "INVITE";
+				sipModel.invite = messageLines[i].split(" ")[1].trim();
+			}
+			else if(messageLines[i].startsWith("BYE"))
+			{
+				sipModel.type = "BYE";
+			}
+			else if(messageLines[i].startsWith("ACK"))
+			{
+				sipModel.type = "ACK";
+			}
+			else if(messageLines[i].startsWith("Via:"))
+			{
+				sipModel.via = messageLines[i].split(" ")[2].trim();
+				
+				System.out.println("SIPMODELVIA: " + sipModel.via);
+			}
+			else if(messageLines[i].startsWith("From:"))
+			{
+				sipModel.from = messageLines[i].split(" ")[1].trim(); //sip:alice...
+			}
+			else if(messageLines[i].startsWith("To:"))
+			{
+				sipModel.to = messageLines[i].split(" ")[1].trim(); //<> kvar, samma som from
+			}
+			else if(messageLines[i].startsWith("Call-ID:"))
+			{
+				sipModel.callId = messageLines[i].split(" ")[1].trim();
+			}
+			else if(messageLines[i].startsWith("CSeq:"))
+			{
+				sipModel.cSeq = Integer.parseInt(messageLines[i].split(" ")[1].trim());
+			}
+	    }
+		
+		return sipModel;
 	}
 
 }

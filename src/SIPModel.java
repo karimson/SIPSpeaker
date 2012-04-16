@@ -1,6 +1,7 @@
 
 public class SIPModel
 {
+	String type;
 	String invite;
 	String via;
 	String from;

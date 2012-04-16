@@ -59,7 +59,7 @@ public void run()
                                     {
                                     	
                                     }
-                                    rrh.processOutput(httpModel, out, queue.getStatusPage());
+                                    rrh.processOutput(httpModel, out);
                                 }
                                 else
                                 {

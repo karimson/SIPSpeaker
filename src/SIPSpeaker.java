@@ -1,15 +1,16 @@
-import java.io.UnsupportedEncodingException;
+import java.net.SocketException;
 
 
 public class SIPSpeaker 
 {
-	public static void main(String [] args) throws UnsupportedEncodingException
+	public static void main(String [] args) throws SocketException, InterruptedException, Exception
 	{
-		WebServer web = new WebServer();
+/* GÖR EN TRÅDAD WEBSERVER!
+ * 		WebServer web = new WebServer();
 		web.startWebServer(80);
-		
+*/ 		
 		SipServer sip = new SipServer();
-		sip.startSipServer(5060);
+		sip.startSipServer(5070);
 	}
 
 }
