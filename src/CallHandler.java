@@ -34,9 +34,12 @@ public void run()
 		sipSend(ringMessageInBytes);
 		System.out.println("Sent ringing message..");
 		
-		try {
+		try 
+		{
 			Thread.sleep(5000);
-		} catch (InterruptedException e) {
+		} 
+		catch (InterruptedException e) 
+		{
 			e.printStackTrace();
 		}
 		
@@ -51,22 +54,30 @@ public void run()
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}//PLAY MESSAGE
-		
-		byte[] byeMessageInBytes = messenger.byeMessage(sipModel).getBytes();
-		sipSend(byeMessageInBytes);
-		System.out.println("Sent bye message..");
-		state = "SENT BYE";
+		}
     }
     else if(sipModel.type.toUpperCase().equals("BYE"))
     {
-    	
+    	//kasta användaren;
     }
-    else
+    else if(sipModel.type.toUpperCase().equals("ACK") && state.equals("OK SENT"))
     {
-    	
+    	try {
+            AudioHandler ah = new AudioHandler(sipModel.IP, sipModel.port);
+            ah.startTransmitting();
+            Thread.sleep(10000);
+            //sipMessage.updateVia(message);
+            sipSend(messenger.byeMessage(sipModel).getBytes());
+            System.out.println("Sent bye message..");
+    		state = "SENT BYE";
+    		}
+    		catch (Exception exp) 
+    		{
+                System.out.println(exp.getMessage());
+            }
     }
 }
+
 
 public void sipSend(byte[] messageInBytes) 
 {

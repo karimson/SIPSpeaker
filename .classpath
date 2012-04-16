@@ -2,19 +2,19 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/cmu_time_awb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/cmu_us_kal.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/cmudict04.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/cmulex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/cmutimelex.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/customizer.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/en_us.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/freetts.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/freetts-jsapi10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/jmf.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/jsapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/mbrola.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/mediaplayer.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Danne/Documents/My Dropbox/DanneBozzKostas/lib/multiplayer.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/cmu_time_awb.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/cmu_us_kal.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/cmudict04.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/cmulex.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/cmutimelex.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/customizer.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/en_us.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/freetts-jsapi10.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/freetts.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/jmf.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/jsapi.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/mbrola.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/mediaplayer.jar"/>
+	<classpathentry kind="lib" path="/Users/apple/Desktop/KTH/IK2213/SIPSpeaker/lib/multiplayer.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
