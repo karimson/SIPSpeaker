@@ -29,36 +29,43 @@ public void run()
     
     if(sipModel.type.toUpperCase().equals("INVITE") && state.equals("INVITE"))
     {
-    	sipModel.contact = "<sip:server@127.0.0.1>";
     	byte[] ringMessageInBytes = messenger.ringMessage(sipModel).getBytes();
-    	System.out.println("HEJ: " + messenger.ringMessage(sipModel));
+    	
 		sipSend(ringMessageInBytes);
 		System.out.println("Sent ringing message..");
 		
-		byte[] okMessageInBytes = messenger.okMessage(sipModel).getBytes();
-		try
-		{
+		try {
 			Thread.sleep(5000);
-		}
-		catch (InterruptedException e) 
-		{
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
+		byte[] okMessageInBytes = messenger.okMessage(sipModel).getBytes();
+		System.out.println("HEJ: " + messenger.okMessage(sipModel));
 		sipSend(okMessageInBytes);
 		System.out.println("Sent ok message..");
+		
+		state = "OK SENT";
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}//PLAY MESSAGE
+		
+		byte[] byeMessageInBytes = messenger.byeMessage(sipModel).getBytes();
+		sipSend(byeMessageInBytes);
+		System.out.println("Sent bye message..");
+		state = "SENT BYE";
     }
-   /* else if(sipModel.type.toUpperCase().equals("BYE"))
-    {
-    	
-    }
-    else if(sipModel.type.toUpperCase().equals("OK"))
+    else if(sipModel.type.toUpperCase().equals("BYE"))
     {
     	
     }
     else
     {
-    
-    }*/
+    	
+    }
 }
 
 public void sipSend(byte[] messageInBytes) 

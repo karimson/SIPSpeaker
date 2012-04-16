@@ -7,7 +7,7 @@ public class SIPModel
 	String from;
 	String to;
 	String callId;
-	String contact;
+	String contact = "<sip:server@"+SIPSpeaker.getLocalIP()+":5070>";
 	int cSeq;
 	
 }

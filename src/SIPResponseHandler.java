@@ -29,19 +29,21 @@ public class SIPResponseHandler {
 			{
 				sipModel.type = "ACK";
 			}
+			else if(messageLines[i].startsWith("CANCEL"))
+			{
+				sipModel.type = "CANCEL";
+			}
 			else if(messageLines[i].startsWith("Via:"))
 			{
-				sipModel.via = messageLines[i].split(" ")[2].trim();
-				
-				System.out.println("SIPMODELVIA: " + sipModel.via);
+				sipModel.via = messageLines[i].split(" ")[2].trim().replace("rport", "rport=5060");
 			}
 			else if(messageLines[i].startsWith("From:"))
 			{
-				sipModel.from = messageLines[i].split(" ")[1].trim(); //sip:alice...
+				sipModel.from = messageLines[i].split(" ")[1].trim();
 			}
 			else if(messageLines[i].startsWith("To:"))
 			{
-				sipModel.to = messageLines[i].split(" ")[1].trim(); //<> kvar, samma som from
+				sipModel.to = messageLines[i].split(" ")[1].trim() + "tag=1877284501"; 
 			}
 			else if(messageLines[i].startsWith("Call-ID:"))
 			{

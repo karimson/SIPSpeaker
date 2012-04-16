@@ -37,7 +37,7 @@ public class SipServer
 			}
            
             CallHandler ch = new CallHandler(serverSocket, packet);
-            ch.run();
+            ch.start();
         }
     }
 }
