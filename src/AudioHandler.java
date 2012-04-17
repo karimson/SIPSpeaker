@@ -19,11 +19,12 @@ public class AudioHandler {
 	{
 		File audioFile = new File("message.wav");
 		
+        mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
         DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 
         mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
         dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
-	}
+    }
 	
 	public void startTransmitting() throws IOException {
         mediaProcessor.start();
