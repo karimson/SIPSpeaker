@@ -62,7 +62,7 @@ public void run()
 	    	{
 	            AudioHandler ah = new AudioHandler(sipModel.fromIp, sipModel.port);
 	            ah.startTransmitting();	
-	            Thread.sleep(10000);
+	            //Thread.currentThread().sleep(10000);
 	            //sipMessage.updateVia(message);
 	            sipSend(messenger.byeMessage(sipModel).getBytes());
 	            System.out.println("Sent bye message..");
