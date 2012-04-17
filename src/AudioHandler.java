@@ -19,7 +19,7 @@ public class AudioHandler {
 	{
 		File audioFile = new File("message.wav");
 		
-        mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
+        mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio/1", ip, port));
         DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 
         mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
