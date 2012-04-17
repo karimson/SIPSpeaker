@@ -4,15 +4,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-public class WebServer
+public class WebServer extends Thread
 {
 	private static boolean listen;
+	ServerSocket serverSocket = null;
 	
 	public void startWebServer(int port) throws UnsupportedEncodingException
 	{
 		
 		listen = true;
-		ServerSocket serverSocket = null;
+		
 		try
 		{
 			serverSocket = new ServerSocket(port); 
@@ -22,19 +23,25 @@ public class WebServer
 			System.out.println("Error listening to port.");
 			System.exit(0);
 		}
-                
+		
+		start();
+
+	}
+	
+	public void run()
+	{
 		System.out.println("Web server started, waiting for incoming connections.");
-                               
+		
 		while(listen)
 		{
 			try 
-                        {
+			{
 				Socket clientSocket = serverSocket.accept();
 				ThreadHandler handler = new ThreadHandler(clientSocket);
 				handler.start();
 			} 
-                        catch (IOException e) 
-                        {
+			catch (IOException e) 
+			{
 				e.printStackTrace();
 			} 
 		}

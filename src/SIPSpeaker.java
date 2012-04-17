@@ -7,10 +7,10 @@ public class SIPSpeaker
 {
 	public static void main(String [] args) throws SocketException, InterruptedException, Exception
 	{
-/* GÖR EN TRÅDAD WEBSERVER!
- * 		WebServer web = new WebServer();
-		web.startWebServer(80);
-*/ 		
+
+  		WebServer web = new WebServer();
+		web.startWebServer(8000);
+		
 		SipServer sip = new SipServer();
 		sip.startSipServer(5070);
 	}

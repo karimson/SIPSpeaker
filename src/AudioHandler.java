@@ -9,21 +9,20 @@ import javax.media.protocol.DataSource;
 
 public class AudioHandler {
 	
-	private MediaLocator mediaLocator;
-    private DataSink dataSink;
-    private Processor mediaProcessor;
-    private static final Format[] FORMATS = new Format[]{new AudioFormat(AudioFormat.ULAW_RTP)};
-    private static final ContentDescriptor CONTENT_DESCRIPTOR = new ContentDescriptor(ContentDescriptor.RAW_RTP);
-	
-	public AudioHandler(String ip, int port) throws NoDataSourceException, MalformedURLException, IOException, NoProcessorException, CannotRealizeException, NoDataSinkException, NotRealizedError
+	private MediaLocator mediaLocator = null;
+    private DataSink dataSink = null;
+    private Processor mediaProcessor = null;
+    private static final Format[] FORMATS = new Format[] {new AudioFormat(AudioFormat.GSM_RTP)};
+	private static final ContentDescriptor CONTENT_DESCRIPTOR = new ContentDescriptor(ContentDescriptor.RAW_RTP);
+    public AudioHandler(String ip, int port) throws NoDataSourceException, MalformedURLException, IOException, NoProcessorException, CannotRealizeException, NoDataSinkException, NotRealizedError
 	{
 		File audioFile = new File("message.wav");
+		DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 		
-        mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio/1", ip, port));
-        DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
-
-        mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
-        dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
+		mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
+		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
+		
+		dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
     }
 	
 	public void startTransmitting() throws IOException {
