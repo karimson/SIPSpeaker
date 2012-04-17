@@ -40,6 +40,7 @@ public class SIPResponseHandler {
 			else if(messageLines[i].startsWith("From:"))
 			{
 				sipModel.from = messageLines[i].split(" ")[1].trim();
+				sipModel.fromIp = sipModel.from.split("@")[1].split(">")[0];
 			}
 			else if(messageLines[i].startsWith("To:"))
 			{

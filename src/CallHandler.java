@@ -63,8 +63,8 @@ public void run()
     else if(sipModel.type.toUpperCase().equals("ACK") && state.equals("OK SENT"))
     {
     	try {
-            AudioHandler ah = new AudioHandler(sipModel.IP, sipModel.port);
-            ah.startTransmitting();
+            AudioHandler ah = new AudioHandler(sipModel.ownIp, sipModel.port);
+            ah.startTransmitting();	
             Thread.sleep(10000);
             //sipMessage.updateVia(message);
             sipSend(messenger.byeMessage(sipModel).getBytes());
