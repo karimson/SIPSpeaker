@@ -7,7 +7,6 @@ public class SIPResponseHandler {
 	
 	public SIPModel processRequest(String request) 
 	{
-		System.out.println(request);
 		String[] messageLines = request.split("\n");
 		
 		for (int i=0; i<messageLines.length; i++)
@@ -18,6 +17,7 @@ public class SIPResponseHandler {
 			}
 			if(messageLines[i].startsWith("INVITE"))
 			{
+				System.out.println("INVITE recieved");
 				sipModel.type = "INVITE";
 				sipModel.invite = messageLines[i].split(" ")[1].trim();
 			}
@@ -48,7 +48,7 @@ public class SIPResponseHandler {
 			}
 			else if(messageLines[i].startsWith("Call-ID:"))
 			{
-				sipModel.callId = messageLines[i].split(" ")[1].trim();
+				sipModel.callId = Integer.parseInt(messageLines[i].split(" ")[1].trim());
 			}
 			else if(messageLines[i].startsWith("CSeq:"))
 			{

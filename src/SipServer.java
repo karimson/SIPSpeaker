@@ -2,14 +2,17 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SipServer
 {
+	Map<Integer, String> callRegister = new HashMap<Integer, String>();
 	
     public void startSipServer(int port) throws InterruptedException, SocketException, Exception
     {
-
+    	
     	DatagramSocket serverSocket = null;
 
         try
@@ -35,9 +38,34 @@ public class SipServer
 			{
 				e.printStackTrace();
 			}
-           
-            CallHandler ch = new CallHandler(serverSocket, packet);
-            ch.start();
+            
+            CallHandler ch = new CallHandler(serverSocket, packet, this);
+            ch.start();           
         }
+    }
+    
+    public synchronized void removeCall(int callId)
+    {
+    	callRegister.remove(callId);
+    }
+    
+    public synchronized void addCall(int callId)
+    {
+    	callRegister.put(new Integer(callId), "RINGING NOT SENT");
+    }
+    
+    public synchronized boolean callExists(int callId)
+    {
+    	return callRegister.containsKey(callId);
+    }
+    
+    public synchronized void setState(int callId, String state)
+    {
+    	callRegister.put(callId, state);
+    }
+    
+    public synchronized String getState(int callId)
+    {
+    	return callRegister.get(callId);
     }
 }
