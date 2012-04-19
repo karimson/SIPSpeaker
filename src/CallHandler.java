@@ -1,7 +1,11 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketAddress;
+import java.net.URL;
+
+import javax.media.MediaLocator;
 
 
 public class CallHandler extends Thread
@@ -59,12 +63,38 @@ public void run()
     		server.setState(sipModel.callId,"SENDING DATA");
     	
 	    	try 
-	    	{
-	            AudioHandler ah = new AudioHandler(sipModel.fromIp, sipModel.port);
-	            ah.startTransmitting();	
+	    	{/*
+	    		
+	            RTPHandler rtph = new RTPHandler(sipModel.fromIp, portFromString);
+	            rtph.send();
+	            rtph.stop();
 	            //Thread.currentThread().sleep(10000);
 	            //sipMessage.updateVia(message);
-	            sipSend(messenger.byeMessage(sipModel).getBytes());
+	    		String portFromString = "" + sipModel.port; portFromString.trim();
+	    		URL message = new File("message1.wav").toURI().toURL();
+	    		AudioTransmit at = new AudioTransmit(new MediaLocator(message), sipModel.fromIp, sipModel.stringPort);
+	    		String result = at.start();
+	    		
+	    		try {
+	    		    Thread.currentThread().sleep(10000);
+	    		} catch (InterruptedException ie) {
+	    		}
+
+	    		// Stop the transmission
+	    		at.stop();
+	    		*/
+	    		AudioHandler ah = new AudioHandler(sipModel.fromIp, 7078);
+	    		ah.startTransmitting();
+	    		try {
+	    		    Thread.currentThread().sleep(10000);
+	    		} catch (InterruptedException ie) {
+	    		}
+
+	    		
+	    		
+	    		ah.stopTransmitting();
+	    		
+	    		sipSend(messenger.byeMessage(sipModel).getBytes());
 	            System.out.println("Sent bye message..");
 	            server.setState(sipModel.callId, "BYE SENT");
 	    	}

@@ -26,8 +26,7 @@ public class Messenger
             + "s=SIPspeaker \r\n"
             + "c=IN IP4 " + SIPSpeaker.getLocalIP() + "\r\n"
             + "t=0 0\r\n"
-            + "m=audio %d RTP/AVP 0 3\r\n"
-            + "a=rtpmap:0 ULAW/8000\r\n"
+            + "m=audio %d RTP/AVP 3\r\n"
             + "a=rtpmap:3 GSM/8000\r\n"
             + "a=sendrecv\r\n\r\n";
     private String OK_FORMAT = "SIP/2.0 200 OK\r\n"

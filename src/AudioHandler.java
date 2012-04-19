@@ -19,14 +19,14 @@ public class AudioHandler {
 	private static final ContentDescriptor CONTENT_DESCRIPTOR = new ContentDescriptor(ContentDescriptor.RAW_RTP);
     public AudioHandler(String ip, int port) throws NoDataSourceException, MalformedURLException, IOException, NoProcessorException, CannotRealizeException, NoDataSinkException, NotRealizedError
 	{
-		/*File audioFile = new File("message.wav");
+		File audioFile = new File("message1.wav");
 		DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 		
 		mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
-		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
+		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, 7078));
 		
 		dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
-*/
+
 	}
 	
 	public void startTransmitting() throws IOException {

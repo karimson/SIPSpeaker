@@ -11,5 +11,6 @@ public class SIPModel
 	String contact = "<sip:server@"+SIPSpeaker.getLocalIP()+":5070>";
 	int cSeq;
 	int port;
+	String stringPort;
 	
 }
