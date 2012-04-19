@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 
 public class SIPSpeaker 
 {
+	private static int port;
 	public static void main(String [] args) throws SocketException, InterruptedException, Exception
 	{
 
@@ -27,6 +28,15 @@ public class SIPSpeaker
 		{
 		}
 		return addr.getHostAddress();
+	}
+	
+	public static void setPort(int port)
+	{
+		SIPSpeaker.port = port;
+	}
+	public static int getPort()
+	{
+		return port;
 	}
 }
 

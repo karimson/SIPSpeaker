@@ -1,6 +1,6 @@
 
 public class Messenger
-{
+{	
 	public String ringMessage(SIPModel model)
 	{
         return String.format(RING_FORMAT, model.via, model.from, model.to, model.callId, model.cSeq, model.contact);
@@ -53,5 +53,4 @@ public class Messenger
             + "CSeq: %d BYE\r\n"
             + "Contact: %s\r\n"
             + "Content-Length: 0\r\n";
-
 }

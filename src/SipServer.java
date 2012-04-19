@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class SipServer
 {
-	Map<Integer, String> callRegister = new HashMap<Integer, String>();
-	
+	Map<Integer, String> callRegister = new HashMap<Integer, String>();	
     public void startSipServer(int port) throws InterruptedException, SocketException, Exception
     {
     	

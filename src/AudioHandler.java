@@ -23,7 +23,7 @@ public class AudioHandler {
 		DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 		
 		mediaProcessor = Manager.createRealizedProcessor(new ProcessorModel(source, FORMATS, CONTENT_DESCRIPTOR));
-		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, 7078));
+		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
 		
 		dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
 

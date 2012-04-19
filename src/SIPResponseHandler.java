@@ -1,8 +1,5 @@
-
-
-
-public class SIPResponseHandler {
-	Messenger messenger = new Messenger();
+public class SIPResponseHandler
+{
 	SIPModel sipModel = new SIPModel();
 	
 	public SIPModel processRequest(String request) 
@@ -56,8 +53,13 @@ public class SIPResponseHandler {
 			}
 			else if(messageLines[i].startsWith("m=audio"))
 			{
-				sipModel.stringPort = messageLines[i].split(" ")[1].trim();
-				sipModel.port = Integer.parseInt(sipModel.stringPort);
+				if (!sipModel.type.equals("ACK"))
+				{
+					sipModel.stringPort = messageLines[i].split(" ")[1].trim();
+					sipModel.port = Integer.parseInt(sipModel.stringPort);
+					SIPSpeaker.setPort(sipModel.port);
+				}
+				
 			}
 	    }
 		

@@ -83,14 +83,15 @@ public void run()
 	    		// Stop the transmission
 	    		at.stop();
 	    		*/
-	    		AudioHandler ah = new AudioHandler(sipModel.fromIp, 7078);
+	    		AudioHandler ah = new AudioHandler(sipModel.fromIp, SIPSpeaker.getPort());
 	    		ah.startTransmitting();
-	    		try {
+	    		try
+	    		{
 	    		    Thread.currentThread().sleep(10000);
-	    		} catch (InterruptedException ie) {
+	    		} 
+	    		catch (InterruptedException ie)
+	    		{
 	    		}
-
-	    		
 	    		
 	    		ah.stopTransmitting();
 	    		
