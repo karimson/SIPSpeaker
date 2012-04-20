@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import javax.media.*;
 import javax.media.control.FormatControl;
 import javax.media.control.TrackControl;
+import javax.media.datasink.DataSinkEvent;
+import javax.media.datasink.DataSinkListener;
 import javax.media.format.*;
 import javax.media.protocol.ContentDescriptor;
 import javax.media.protocol.DataSource;
@@ -33,13 +35,46 @@ public class AudioHandler {
         mediaProcessor.start();
         dataSink.open();
         dataSink.start();
-    }
-
-    public void stopTransmitting() throws IOException {
+        
+        RTPDataSinkListener dsl = new RTPDataSinkListener();
+        
+        try {
+			dsl.waitForTransmission();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         dataSink.stop();
         dataSink.close();
         mediaProcessor.stop();
         mediaProcessor.close();
+    }
+
+    public void stopTransmitting() throws IOException {
+        
+    }
+    
+    class RTPDataSinkListener implements DataSinkListener 
+    {
+    	boolean end = false;
+    	
+    	public void dataSinkUpdate(DataSinkEvent event) 
+    	{
+    		if (event instanceof javax.media.datasink.EndOfStreamEvent) 
+    		{
+    			end = true;
+    		}   
+        }
+    	
+    	public void waitForTransmission() throws InterruptedException {
+    		while (!end) 
+    		{
+    			Thread.sleep(50);
+    			DataSinkEvent dsEvent = new DataSinkEvent(dataSink);
+    			dataSinkUpdate(dsEvent);
+    		}
+    	}
     }
 }
 

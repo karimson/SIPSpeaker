@@ -85,15 +85,7 @@ public void run()
 	    		*/
 	    		AudioHandler ah = new AudioHandler(sipModel.fromIp, SIPSpeaker.getPort());
 	    		ah.startTransmitting();
-	    		try
-	    		{
-	    		    Thread.currentThread().sleep(10000);
-	    		} 
-	    		catch (InterruptedException ie)
-	    		{
-	    		}
 	    		
-	    		ah.stopTransmitting();
 	    		
 	    		sipSend(messenger.byeMessage(sipModel).getBytes());
 	            System.out.println("Sent bye message..");
