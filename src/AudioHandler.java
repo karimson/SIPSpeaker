@@ -11,8 +11,8 @@ import javax.media.format.*;
 import javax.media.protocol.ContentDescriptor;
 import javax.media.protocol.DataSource;
 
-public class AudioHandler {
-	
+public class AudioHandler
+{
 	private MediaLocator mediaLocator = null;
     private DataSink dataSink = null;
     private Processor mediaProcessor = null;
@@ -28,10 +28,10 @@ public class AudioHandler {
 		mediaLocator = new MediaLocator(String.format("rtp://%s:%d/audio", ip, port));
 		
 		dataSink = Manager.createDataSink(mediaProcessor.getDataOutput(), mediaLocator);
-
 	}
 	
-	public void startTransmitting() throws IOException {
+	public void startTransmitting() throws IOException
+	{
         mediaProcessor.start();
         dataSink.open();
         dataSink.start();
@@ -49,10 +49,15 @@ public class AudioHandler {
         dataSink.close();
         mediaProcessor.stop();
         mediaProcessor.close();
+        
     }
 
-    public void stopTransmitting() throws IOException {
-        
+    public void stopTransmitting() throws IOException
+    {
+        dataSink.stop();
+        dataSink.close();
+        mediaProcessor.stop();
+        mediaProcessor.close();
     }
     
     class RTPDataSinkListener implements DataSinkListener 
