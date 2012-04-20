@@ -38,7 +38,7 @@ public class AudioHandler
         mediaProcessor.start();
         dataSink.open();
         dataSink.start();
-        
+
         System.out.println(messageDuration(audioFile));
         Thread.sleep((long) messageDuration(audioFile)*1000);
         
@@ -47,6 +47,13 @@ public class AudioHandler
         mediaProcessor.stop();
         mediaProcessor.close();
 
+    }
+    
+    VoiceHandler verlaine;
+
+    void setup(){
+     verlaine = new VoiceHandler("kevin16");
+     verlaine.mluv("hi boz you got damn whore") ;
     }
 
 	public static double messageDuration(File file)
