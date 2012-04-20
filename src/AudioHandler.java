@@ -39,6 +39,7 @@ public class AudioHandler
         RTPDataSinkListener dsl = new RTPDataSinkListener();
         
         try {
+        	setup();
 			dsl.waitForTransmission();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -80,6 +81,13 @@ public class AudioHandler
     			dataSinkUpdate(dsEvent);
     		}
     	}
+    }
+    
+    VoiceHandler verlaine;
+
+    void setup(){
+     verlaine = new VoiceHandler("kevin16");
+     verlaine.mluv("hi boz you got damn whore") ;
     }
 }
 
