@@ -10,17 +10,17 @@ public class SIPSpeaker
 {
 	private static int sipPort;
 	private static int httpPort;
+	static int port;
 	
 	public static void main(String [] args) throws SocketException, InterruptedException, Exception
 	{
-		Properties prop = new Properties();
+		/*Properties prop = new Properties();
 		InputStream is = new FileInputStream("sipspeaker.cfg");
 
 	    prop.load(is);
 	    
 	    prop.getProperty("sip_port", "5070");
 	    
-		
 		for(int i=0; i<args.length; i++)
 		{
 			if(args[i].contains("-c"))
@@ -36,13 +36,17 @@ public class SIPSpeaker
 			{
 
 			}
-		}
+		}*/
+		
+		VoiceHandler vh = new VoiceHandler();
+		vh.setMessage("Hej Niklas wanna do business");
 		
   		WebServer web = new WebServer();
-		web.startWebServer(httpPort);
-		
+		//web.startWebServer(httpPort);
+		web.startWebServer(8080);
 		SipServer sip = new SipServer();
-		sip.startSipServer(sipPort);
+		sip.startSipServer(5070);
+	//	sip.startSipServer(sipPort);
 	}
 	
 	public static String getLocalIP()
@@ -57,6 +61,14 @@ public class SIPSpeaker
 		{
 		}
 		return addr.getHostAddress();
+	}
+
+	public static int getPort() {
+		return port;
+	}
+
+	public static void setPort(int port) {
+		SIPSpeaker.port = port;
 	}
 }
 

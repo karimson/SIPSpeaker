@@ -9,9 +9,9 @@ public class WebServer extends Thread
 	private static boolean listen;
 	ServerSocket serverSocket = null;
 	
+	
 	public void startWebServer(int port) throws UnsupportedEncodingException
 	{
-		
 		listen = true;
 		
 		try
@@ -52,6 +52,4 @@ public class WebServer extends Thread
 	{
 		listen = false;
 	}
-
-
 }
