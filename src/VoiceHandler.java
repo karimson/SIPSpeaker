@@ -20,16 +20,16 @@ public class VoiceHandler
 		voice.setPitch((float) 1.75);
 		voice.setPitchShift((float) 0.75);
 		voice.setStyle("business");  //"business", "casual", "robotic", "breathy"
-		
-		voice.allocate();
+	
 	}
 
 	void setMessage(String message)
 	{
-		System.out.println(System.getProperty("user.dir")+"generated.wav");
-		SingleFileAudioPlayer sfap = new SingleFileAudioPlayer(System.getProperty("user.dir")+"generated.wav", AudioFileFormat.Type.WAVE);
+		SingleFileAudioPlayer sfap = new SingleFileAudioPlayer("generated", AudioFileFormat.Type.WAVE);
 		voice.setAudioPlayer(sfap);
+		voice.allocate();
 		voice.speak(message);
 		sfap.close();
+		voice.deallocate(); // VET INTE OM MAN SKA DEALLOCATEA IFALL MAN SKA KUNNA SÄTTA DEN IGEN EFTERÅT...
 	}
 }

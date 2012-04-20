@@ -13,7 +13,7 @@ public class SipServer
     {
     	
     	DatagramSocket serverSocket = null;
-
+    	
         try
         {
 			serverSocket = new DatagramSocket(5070);

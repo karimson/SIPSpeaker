@@ -12,7 +12,6 @@
 	<classpathentry kind="lib" path="lib/freetts-jsapi10.jar"/>
 	<classpathentry kind="lib" path="lib/freetts.jar"/>
 	<classpathentry kind="lib" path="lib/jmf.jar"/>
-	<classpathentry kind="lib" path="lib/jmf.properties"/>
 	<classpathentry kind="lib" path="lib/jsapi.jar"/>
 	<classpathentry kind="lib" path="lib/mbrola.jar"/>
 	<classpathentry kind="lib" path="lib/mediaplayer.jar"/>

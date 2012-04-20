@@ -50,13 +50,7 @@ public class AudioHandler
         mediaProcessor.close();
 
     }
-    
-    VoiceHandler verlaine;
 
-    void setup(){
-     verlaine = new VoiceHandler("kevin16");
-     verlaine.mluv("hi boz you got damn whore") ;
-    }
 
 	public static double messageDuration(File file)
 	{   

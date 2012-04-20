@@ -1,9 +1,6 @@
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.Properties;
 
 
 public class SIPSpeaker 
@@ -40,7 +37,6 @@ public class SIPSpeaker
 		
 		VoiceHandler vh = new VoiceHandler();
 		vh.setMessage("Hej Niklas wanna do business");
-		
   		WebServer web = new WebServer();
 		//web.startWebServer(httpPort);
 		web.startWebServer(8080);
