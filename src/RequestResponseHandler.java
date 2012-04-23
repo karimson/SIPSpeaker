@@ -45,13 +45,34 @@ public class RequestResponseHandler
 		} 	
 		else if(httpModel.type.equals("POST") && request.startsWith("FROM"))
 		{
-			httpModel.mailData = request;
+			httpModel.data = request;
 		}
 	}
 
 	public void processOutput(HTTPModel httpModel, PrintWriter out) 
 	{
-           
+		if(httpModel.type.equals("POST"))
+        {
+            if(httpModel.path.contains("status"))
+            {
+               out.write("Status page");
+            }   
+            else
+            {
+               out.write("Message changed.");
+            }
+        }
+        else
+        {
+            if(httpModel.path.contains("status"))
+            {
+               out.write("Status page");
+            }
+            else
+            {
+               out.write(getPage("webmail.html"));
+            }
+        }
 	}
 	
         
@@ -98,5 +119,10 @@ public class RequestResponseHandler
         
         return response;
     }
+
+	public String getMessage(HTTPModel httpModel) 
+	{
+		return httpModel.data;
+	}
 	
 }

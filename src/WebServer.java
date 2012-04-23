@@ -8,7 +8,7 @@ public class WebServer extends Thread
 {
 	private static boolean listen;
 	ServerSocket serverSocket = null;
-	
+	String currentMessage = "";
 	
 	public void startWebServer(int port) throws UnsupportedEncodingException
 	{
@@ -37,7 +37,7 @@ public class WebServer extends Thread
 			try 
 			{
 				Socket clientSocket = serverSocket.accept();
-				ThreadHandler handler = new ThreadHandler(clientSocket);
+				ThreadHandler handler = new ThreadHandler(clientSocket, this);
 				handler.start();
 			} 
 			catch (IOException e) 
