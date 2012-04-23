@@ -10,5 +10,5 @@ public class HTTPModel
 	String acceptEncoding;
 	String acceptLanguage;
 	String acceptCharset;
-	String mailData;
+	String data;
 }
