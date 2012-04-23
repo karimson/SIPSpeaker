@@ -11,29 +11,17 @@ public class SIPSpeaker
 	
 	public static void main(String [] args) throws SocketException, InterruptedException, Exception
 	{
-		/*Properties prop = new Properties();
-		InputStream is = new FileInputStream("sipspeaker.cfg");
-
-	    prop.load(is);
-	    
-	    prop.getProperty("sip_port", "5070");
-	    
-		for(int i=0; i<args.length; i++)
+		// java SIPSpeaker [-c config_file_name] [-user sip_uri] [-http http_bind_address]
+		if (args[0].contains("-c"))
 		{
-			if(args[i].contains("-c"))
+			if (args[1].contains("-user"))
 			{
-				is = new FileInputStream(args[i]);
-				prop.load(is);
+				if (args[2].contains("-http"))
+				{
+					ApplicationProperties.updateProperties(args[0], args[1], args[2]);
+				}
 			}
-			if(args[i].contains("-user"))
-			{
-				
-			}
-			if(args[i].contains("-http"))
-			{
-
-			}
-		}*/
+		}
 		
 		VoiceHandler vh = new VoiceHandler();
 		vh.setMessage("Hej Niklas wanna do business");
