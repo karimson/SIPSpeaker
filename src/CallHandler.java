@@ -27,7 +27,7 @@ public class CallHandler extends Thread
 		sipModel = srh.processRequest(new String(packet.getData()));
 		if(sipModel.type.toUpperCase().equals("INVITE") && !server.callExists(sipModel.callId))
 		{
-			server.addCall(sipModel.callId);
+			server.addCall(sipModel.callId, sipModel.port);
 			byte[] ringMessageInBytes = messenger.ringMessage(sipModel).getBytes();
 
 			sipSend(ringMessageInBytes);
@@ -60,7 +60,7 @@ public class CallHandler extends Thread
 
 				try 
 				{
-					AudioHandler ah = new AudioHandler(sipModel.fromIp, SIPSpeaker.getPort());
+					AudioHandler ah = new AudioHandler(sipModel.fromIp, server.getPort(sipModel.callId));
 					ah.transmit();
 
 					sipSend(messenger.byeMessage(sipModel).getBytes());

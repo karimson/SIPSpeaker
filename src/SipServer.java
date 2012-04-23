@@ -8,15 +8,15 @@ import java.util.Map;
 
 public class SipServer
 {
-	Map<Integer, String> callRegister = new HashMap<Integer, String>();	
-    public void startSipServer(int port) throws InterruptedException, SocketException, Exception
+	Map<Integer, String> callRegister = new HashMap<Integer, String>();
+	Map<Integer, Integer> portRegister = new HashMap<Integer, Integer>();
+    public void startSipServer() throws InterruptedException, SocketException, Exception
     {
-    	
     	DatagramSocket serverSocket = null;
     	
         try
         {
-			serverSocket = new DatagramSocket(5070);
+			serverSocket = new DatagramSocket(ApplicationProperties.SIP_PORT);
 		} 
         catch (SocketException e1)
         {
@@ -46,11 +46,13 @@ public class SipServer
     public synchronized void removeCall(int callId)
     {
     	callRegister.remove(callId);
+    	portRegister.remove(callId);
     }
     
-    public synchronized void addCall(int callId)
+    public synchronized void addCall(int callId, int port)
     {
     	callRegister.put(new Integer(callId), "RINGING NOT SENT");
+    	portRegister.put(new Integer(callId), new Integer(port));
     }
     
     public synchronized boolean callExists(int callId)
@@ -66,5 +68,10 @@ public class SipServer
     public synchronized String getState(int callId)
     {
     	return callRegister.get(callId);
+    }
+    
+    public synchronized Integer getPort(int callId)
+    {
+    	return portRegister.get(callId);
     }
 }

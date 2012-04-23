@@ -22,9 +22,9 @@ public class Messenger
     }
 	
     private final String SDP = "v=0\r\n"
-            + "o=SIPspeaker 0 0 IN IP4 " + SIPSpeaker.getLocalIP() + "\r\n"
+            + "o=SIPspeaker 0 0 IN IP4 " + ApplicationProperties.SIP_HOST + "\r\n"
             + "s=SIPspeaker \r\n"
-            + "c=IN IP4 " + SIPSpeaker.getLocalIP() + "\r\n"
+            + "c=IN IP4 " + ApplicationProperties.SIP_HOST + "\r\n"
             + "t=0 0\r\n"
             + "m=audio %d RTP/AVP 3\r\n"
             + "a=rtpmap:3 GSM/8000\r\n"

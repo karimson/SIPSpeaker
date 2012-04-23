@@ -32,7 +32,7 @@ public class SIPResponseHandler
 			}
 			else if(messageLines[i].startsWith("Via:"))
 			{
-				sipModel.via = messageLines[i].split(" ")[2].trim().replace("rport", "rport=5060");
+				sipModel.via = messageLines[i].split(" ")[2].trim().replace("rport", "rport="+ApplicationProperties.SIP_PORT);
 			}
 			else if(messageLines[i].startsWith("From:"))
 			{
@@ -57,7 +57,6 @@ public class SIPResponseHandler
 				{
 					sipModel.stringPort = messageLines[i].split(" ")[1].trim();
 					sipModel.port = Integer.parseInt(sipModel.stringPort);
-					SIPSpeaker.setPort(sipModel.port);
 				}
 				
 			}
