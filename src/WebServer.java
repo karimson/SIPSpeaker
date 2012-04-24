@@ -24,7 +24,7 @@ public class WebServer extends Thread
 			System.exit(0);
 		}
 		
-		start();
+		this.start();
 
 	}
 	
@@ -37,7 +37,7 @@ public class WebServer extends Thread
 			try 
 			{
 				Socket clientSocket = serverSocket.accept();
-				ThreadHandler handler = new ThreadHandler(clientSocket, this);
+				ThreadHandler handler = new ThreadHandler(clientSocket);
 				handler.start();
 			} 
 			catch (IOException e) 

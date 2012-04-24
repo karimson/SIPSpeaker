@@ -43,9 +43,9 @@ public class RequestResponseHandler
 		{
 			httpModel.acceptCharset = request.substring(15).trim();
 		} 	
-		else if(httpModel.type.equals("POST") && request.startsWith("FROM"))
+		else if(httpModel.type.equals("POST") && request.startsWith("MESSAGE"))
 		{
-			httpModel.data = request;
+			httpModel.data = request.split("=")[1].split("&")[0];
 		}
 	}
 
@@ -53,10 +53,16 @@ public class RequestResponseHandler
 	{
 		if(httpModel.type.equals("POST"))
         {
-            if(httpModel.path.contains("status"))
+            if(httpModel.path.contains("current"))
             {
-               out.write("Status page");
+               out.write(ApplicationProperties.getMessage());
             }   
+            else if(httpModel.path.contains("delete"))
+            {
+            	System.out.println("hej hej hejehejeheje");
+            	out.write("Current message deleted and set to default");
+            	ApplicationProperties.setDefaultMessage();
+            }
             else
             {
                out.write("Message changed.");
@@ -64,13 +70,19 @@ public class RequestResponseHandler
         }
         else
         {
-            if(httpModel.path.contains("status"))
+            if(httpModel.path.contains("current"))
             {
-               out.write("Status page");
+               out.write(ApplicationProperties.getMessage());
+            }
+            else if(httpModel.path.contains("delete"))
+            {
+            	System.out.println("hej hej hejehejeheje");
+            	out.write("Current message deleted and set to default");
+            	ApplicationProperties.setDefaultMessage();
             }
             else
             {
-               out.write(getPage("webmail.html"));
+               out.write(getPage("sipspeaker.html"));
             }
         }
 	}

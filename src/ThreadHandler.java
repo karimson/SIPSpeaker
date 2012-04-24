@@ -3,16 +3,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URLDecoder;
 
 public class ThreadHandler extends Thread
 {
-	private WebServer webServer;
 	private Socket socket = null;
 
-	public ThreadHandler(Socket inputSocket, WebServer webServer)
+	public ThreadHandler(Socket inputSocket)
 	{
 		this.socket = inputSocket;
-		this.webServer = webServer;
 	}
 
 	public void run()
@@ -45,6 +44,13 @@ public class ThreadHandler extends Thread
 				for (int i = 0; i < inLineLength; i++)
 				{
 					processedLine = inputLine.split("(\r\n|\r|\n)")[i];
+					if (processedLine.contains("favicon"))
+					{
+						in.close();
+						out.close();
+						socket.close();
+						break;
+					}
 					if (processedLine.equals(""))
 					{
 						continue;
@@ -54,11 +60,11 @@ public class ThreadHandler extends Thread
 
 				if (httpModel.type.equals("GET") || httpModel.type.equals("POST"))
 				{
-					if(httpModel.path.equals("/") || httpModel.path.equals("/status"))
+					if(httpModel.path.equals("/") || httpModel.path.equals("/current") || httpModel.path.equals("/delete"))
 					{
-						if(httpModel.type.equals("POST") && !httpModel.path.equals("/status"))
+						if(httpModel.type.equals("POST") && !httpModel.path.equals("/current"))
 						{
-							webServer.currentMessage = rrh.getMessage(httpModel);
+							ApplicationProperties.setMessage(URLDecoder.decode(httpModel.data, "UTF-8"));
 						}
 						rrh.processOutput(httpModel, out);
 					}

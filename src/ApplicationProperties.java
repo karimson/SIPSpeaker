@@ -66,6 +66,11 @@ public class ApplicationProperties
 		vh.setMessage(ApplicationProperties.CURRENT_MESSAGE);
 	}
 	
+	public static String getMessage()
+	{
+		return CURRENT_MESSAGE;
+	}
+	
 	public static void setDefaultMessage()
 	{
 		CURRENT_MESSAGE = DEFAULT_MESSAGE;
