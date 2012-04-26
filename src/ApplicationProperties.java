@@ -40,7 +40,7 @@ public class ApplicationProperties
 				SIP_PORT = 5060;
 				SIP_USER = "robot";
 	            HTTP_INTERFACE = "127.0.0.1";
-	            HTTP_PORT = 80;
+	            HTTP_PORT = 8000;
 	            MESSAGE_WAV = "generated.wav";
 	            SIP_HOST = "127.0.0.1";
 			}
