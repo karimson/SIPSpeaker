@@ -17,6 +17,7 @@ public class SIPResponseHandler
 				System.out.println("INVITE recieved");
 				sipModel.type = "INVITE";
 				sipModel.invite = messageLines[i].split(" ")[1].trim();
+				sipModel.requestedUser = messageLines[i].split(":")[1].split("@")[0];
 			}
 			else if(messageLines[i].startsWith("BYE"))
 			{
@@ -41,8 +42,7 @@ public class SIPResponseHandler
 			}
 			else if(messageLines[i].startsWith("To:"))
 			{
-				sipModel.to = messageLines[i].split(" ")[1].trim() + "tag=1877284501"; 
-				sipModel.requestedUser = messageLines[i].split(":")[1].split("@")[0];
+				sipModel.to = messageLines[i].split(" ")[1].trim() + "tag=1877284501";
 			}
 			else if(messageLines[i].startsWith("Call-ID:"))
 			{

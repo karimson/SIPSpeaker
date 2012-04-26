@@ -61,7 +61,6 @@ public class RequestResponseHandler
             }   
             else if(httpModel.path.contains("delete"))
             {
-            	System.out.println("hej hej hejehejeheje");
             	out.write("Current message deleted and set to default");
             	ApplicationProperties.setDefaultMessage();
             }
@@ -78,7 +77,6 @@ public class RequestResponseHandler
             }
             else if(httpModel.path.contains("delete"))
             {
-            	System.out.println("hej hej hejehejeheje");
             	out.write("Current message deleted and set to default");
             	ApplicationProperties.setDefaultMessage();
             }

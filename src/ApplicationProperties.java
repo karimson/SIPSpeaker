@@ -1,4 +1,5 @@
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -11,7 +12,7 @@ public class ApplicationProperties
     public static String SIP_USER;
     public static String SIP_HOST;
     public static String HTTP_INTERFACE;
-    public static String HTTP_PORT;
+    public static int HTTP_PORT;
     public static String MESSAGE_WAV;
     public static String filePath = "sipspeaker.cfg";
 
@@ -20,15 +21,29 @@ public class ApplicationProperties
 		Properties prop = new Properties();
 		try
 		{
-			prop.load(new FileInputStream(filePath));
-			DEFAULT_MESSAGE = prop.getProperty("default_message");
-			CURRENT_MESSAGE = DEFAULT_MESSAGE;
-			SIP_PORT = Integer.parseInt(prop.getProperty("sip_port"));
-			SIP_USER = prop.getProperty("sip_user");
-            HTTP_INTERFACE = prop.getProperty("http_interface");
-            HTTP_PORT = prop.getProperty("http_port");
-            MESSAGE_WAV = prop.getProperty("message_wav");
-            SIP_HOST = prop.getProperty("sip_interface");
+			try
+			{
+				prop.load(new FileInputStream(filePath));
+				DEFAULT_MESSAGE = prop.getProperty("message_text");
+				CURRENT_MESSAGE = DEFAULT_MESSAGE;
+				SIP_PORT = Integer.parseInt(prop.getProperty("sip_port"));
+				SIP_USER = prop.getProperty("sip_user");
+	            HTTP_INTERFACE = prop.getProperty("http_interface");
+	            HTTP_PORT = Integer.parseInt(prop.getProperty("http_port"));
+	            MESSAGE_WAV = prop.getProperty("message_wav");
+	            SIP_HOST = prop.getProperty("sip_interface");
+			}
+			catch(FileNotFoundException e)
+			{
+				DEFAULT_MESSAGE = "This is sipspeaker, bye";
+				CURRENT_MESSAGE = DEFAULT_MESSAGE;
+				SIP_PORT = 5060;
+				SIP_USER = "robot";
+	            HTTP_INTERFACE = "127.0.0.1";
+	            HTTP_PORT = 80;
+	            MESSAGE_WAV = "generated.wav";
+	            SIP_HOST = "127.0.0.1";
+			}
 		}
 		catch (IOException e)
 		{
@@ -48,14 +63,14 @@ public class ApplicationProperties
 		if(bindAdress.split(":").length == 0)
 		{
 			if(bindAdress.split(".").length < 0)
-				HTTP_PORT = bindAdress;
+				HTTP_PORT = Integer.parseInt(bindAdress);
 			else
 				HTTP_INTERFACE = bindAdress;
 		}
 		else
 		{
 			HTTP_INTERFACE = bindAdress.split(":")[0];
-			HTTP_PORT = bindAdress.split(":")[1];
+			HTTP_PORT = Integer.parseInt(bindAdress.split(":")[1]);
 		}
 	}
 	

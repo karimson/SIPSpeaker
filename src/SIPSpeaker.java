@@ -31,7 +31,7 @@ public class SIPSpeaker
 		vh.setMessage(ApplicationProperties.DEFAULT_MESSAGE);
 		
   		WebServer web = new WebServer();
-		web.startWebServer(8000);//TA BORT PORT
+		web.startWebServer(ApplicationProperties.HTTP_PORT);
 		SipServer sip = new SipServer();
 		sip.startSipServer();
 	}

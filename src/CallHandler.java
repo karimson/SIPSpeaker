@@ -31,6 +31,7 @@ public class CallHandler extends Thread
 		}
 		else if(sipModel.type.toUpperCase().equals("INVITE") && !server.callExists(sipModel.callId))
 		{
+			System.out.println(sipModel.requestedUser + " " + ApplicationProperties.SIP_USER);
 			if(sipModel.requestedUser.equals(ApplicationProperties.SIP_USER))
 			{
 				server.addCall(sipModel.callId, sipModel.port);
