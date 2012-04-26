@@ -28,7 +28,7 @@ public class SIPSpeaker
 		
 		
 		VoiceHandler vh = new VoiceHandler();
-		vh.setMessage(ApplicationProperties.CURRENT_MESSAGE);
+		vh.setMessage(ApplicationProperties.DEFAULT_MESSAGE);
 		
   		WebServer web = new WebServer();
 		web.startWebServer(8000);//TA BORT PORT

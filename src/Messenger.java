@@ -53,4 +53,20 @@ public class Messenger
             + "CSeq: %d BYE\r\n"
             + "Contact: %s\r\n"
             + "Content-Length: 0\r\n";
+
+	public String userNotFoundMessage(SIPModel model) 
+	{
+		return String.format(USERNOTFOUND_FORMAT, model.via, model.from, model.to, model.callId, model.cSeq);
+		
+	}
+	
+	 private String USERNOTFOUND_FORMAT = "SIP/2.0 404 Not Found\r\n"
+	            + "Via: SIP/2.0/UDP %s\r\n"
+	            + "From: %s\r\n"
+	            + "To: %s\r\n"
+	            + "Call-ID: %s\r\n"
+	            + "CSeq: %d INVITE\r\n"
+	            + "Content-Length: 0\r\n"
+	            + "Content-Type: application/sdp\r\n"
+	            + "\r\n";
 }

@@ -25,26 +25,39 @@ public class CallHandler extends Thread
 	public void run()
 	{
 		sipModel = srh.processRequest(new String(packet.getData()));
-		if(sipModel.type.toUpperCase().equals("INVITE") && !server.callExists(sipModel.callId))
+		if(sipModel.type == null)
 		{
-			server.addCall(sipModel.callId, sipModel.port);
-			byte[] ringMessageInBytes = messenger.ringMessage(sipModel).getBytes();
-
-			sipSend(ringMessageInBytes);
-			System.out.println("Sent ringing message..");
-
-			try 
+			System.out.println("Unsupported command recieved from client.");
+		}
+		else if(sipModel.type.toUpperCase().equals("INVITE") && !server.callExists(sipModel.callId))
+		{
+			if(sipModel.requestedUser.equals(ApplicationProperties.SIP_USER))
 			{
-				Thread.sleep(3000);
-				byte[] okMessageInBytes = messenger.okMessage(sipModel).getBytes();
-				sipSend(okMessageInBytes);
-				System.out.println(new String(okMessageInBytes));
-				System.out.println("Sent ok message..");
-				server.setState(sipModel.callId, "OK SENT");
-			} 
-			catch (InterruptedException e) 
+				server.addCall(sipModel.callId, sipModel.port);
+				byte[] ringMessageInBytes = messenger.ringMessage(sipModel).getBytes();
+
+				sipSend(ringMessageInBytes);
+				System.out.println("Sent ringing message..");
+
+				try 
+				{
+					Thread.sleep(3000);
+					byte[] okMessageInBytes = messenger.okMessage(sipModel).getBytes();
+					sipSend(okMessageInBytes);
+					System.out.println(new String(okMessageInBytes));
+					System.out.println("Sent ok message..");
+					server.setState(sipModel.callId, "OK SENT");
+				} 
+				catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			else
 			{
-				e.printStackTrace();
+				byte[] notFoundMessage = messenger.userNotFoundMessage(sipModel).getBytes();
+				sipSend(notFoundMessage);
+				
 			}
 
 		}

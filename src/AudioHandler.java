@@ -22,7 +22,7 @@ public class AudioHandler
 	
 	public AudioHandler(String ip, int port) throws NoDataSourceException, MalformedURLException, IOException, NoProcessorException, CannotRealizeException, NoDataSinkException, NotRealizedError
 	{
-		audioFile = new File("message.wav");
+		audioFile = new File("generated.wav");
 		
 		DataSource source = Manager.createDataSource(new MediaLocator(audioFile.toURI().toURL()));
 		

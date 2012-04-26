@@ -28,7 +28,7 @@ public class ApplicationProperties
             HTTP_INTERFACE = prop.getProperty("http_interface");
             HTTP_PORT = prop.getProperty("http_port");
             MESSAGE_WAV = prop.getProperty("message_wav");
-            SIP_HOST = prop.getProperty("sip_user");
+            SIP_HOST = prop.getProperty("sip_interface");
 		}
 		catch (IOException e)
 		{

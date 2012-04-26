@@ -5,6 +5,7 @@ public class RequestResponseHandler
 {	
 	public void processRequest(String request, HTTPModel httpModel)
 	{
+	
 		if(request.startsWith("GET"))
 		{
 			httpModel.type = "GET";
@@ -47,6 +48,7 @@ public class RequestResponseHandler
 		{
 			httpModel.data = request.split("=")[1].split("&")[0];
 		}
+		
 	}
 
 	public void processOutput(HTTPModel httpModel, PrintWriter out) 

@@ -5,7 +5,7 @@ public class SIPResponseHandler
 	public SIPModel processRequest(String request) 
 	{
 		String[] messageLines = request.split("\n");
-		
+		sipModel.contact = "<sip:"+ApplicationProperties.SIP_USER+"@"+ApplicationProperties.SIP_HOST+":"+ApplicationProperties.SIP_PORT+">";
 		for (int i=0; i<messageLines.length; i++)
 		{
 			if(messageLines[i].startsWith("OPTIONS"))
@@ -42,6 +42,7 @@ public class SIPResponseHandler
 			else if(messageLines[i].startsWith("To:"))
 			{
 				sipModel.to = messageLines[i].split(" ")[1].trim() + "tag=1877284501"; 
+				sipModel.requestedUser = messageLines[i].split(":")[1].split("@")[0];
 			}
 			else if(messageLines[i].startsWith("Call-ID:"))
 			{

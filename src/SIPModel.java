@@ -8,9 +8,10 @@ public class SIPModel
 	String fromIp;
 	String to;
 	int callId;
-	String contact = "<sip:"+ApplicationProperties.SIP_HOST+"@"+ApplicationProperties.SIP_HOST+":"+ApplicationProperties.SIP_PORT+">";
+	String contact;
 	int cSeq;
 	int port;
 	String stringPort;
+	String requestedUser;
 	
 }
