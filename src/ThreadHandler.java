@@ -44,13 +44,6 @@ public class ThreadHandler extends Thread
 				for (int i = 0; i < inLineLength; i++)
 				{
 					processedLine = inputLine.split("(\r\n|\r|\n)")[i];
-					if (processedLine.contains("favicon"))
-					{
-						in.close();
-						out.close();
-						socket.close();
-						break;
-					}
 					if (processedLine.equals(""))
 					{
 						continue;
