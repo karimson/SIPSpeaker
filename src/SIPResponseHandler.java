@@ -33,7 +33,7 @@ public class SIPResponseHandler
 			}
 			else if(messageLines[i].startsWith("Via:"))
 			{
-				sipModel.via = messageLines[i].split(" ")[2].trim().replace("rport", "rport="+ApplicationProperties.SIP_PORT);
+				sipModel.via.add(messageLines[i].split(" ")[2].trim().replace("rport", "rport="+ApplicationProperties.SIP_PORT));
 			}
 			else if(messageLines[i].startsWith("From:"))
 			{
@@ -42,7 +42,7 @@ public class SIPResponseHandler
 			}
 			else if(messageLines[i].startsWith("To:"))
 			{
-				sipModel.to = messageLines[i].split(" ")[1].trim() + "tag=1877284501";
+				sipModel.to = messageLines[i].split(" ")[1].trim() + ";tag=1877284501";
 			}
 			else if(messageLines[i].startsWith("Call-ID:"))
 			{
@@ -54,11 +54,11 @@ public class SIPResponseHandler
 			}
 			else if(messageLines[i].startsWith("m=audio"))
 			{
-				if (!sipModel.type.equals("ACK"))
-				{
+				/*if (!sipModel.type.equals("ACK"))
+				{*/
 					sipModel.stringPort = messageLines[i].split(" ")[1].trim();
 					sipModel.port = Integer.parseInt(sipModel.stringPort);
-				}
+			/*	}*/
 				
 			}
 	    }
